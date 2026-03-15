@@ -70,13 +70,28 @@ export const spriteSets = {
     ],
 };
 
-export const colors = [
-    "white", "grey"
+export const skins = [
+    "ace", "black", "calico", "default", "fox", "ghost", "gray", "jess", "kina", "lucy", "maia", "mike", "moka", "silver", "silversky", "spirit", "valentine"
 ];
 
-export const gifs = {
-    white: "https://cdn.discordapp.com/attachments/893458544794402877/1482391473323245800/oneko0.gif?ex=69b6c824&is=69b576a4&hm=7b243337b1a27166b8777e323613f3b200b614458cc9ab329e01bfc155249d27&",
-    grey: "https://cdn.discordapp.com/attachments/893458544794402877/1482391474023825518/oneko1.gif?ex=69b6c824&is=69b576a4&hm=263461d3d13332685b1da57e71917420825d705a08496429639e0b7f8fa6bb29&"
+export const skinGifs = {
+    "ace": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/ace.png?token=GHSAT0AAAAAADXZGEN7ZHYYKMW74BPLC6N42NWFLMQ",
+    "black": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/black.png?token=GHSAT0AAAAAADXZGEN6EWQMM4OGDFAFWRS22NWFL4A",
+    "calico": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/calico.png?token=GHSAT0AAAAAADXZGEN7OFDISB6FAH6AI3MQ2NWFMYA",
+    "default": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/default.png?token=GHSAT0AAAAAADXZGEN7OWEEDNB3P4ARBMAC2NWFM4A",
+    "fox": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/fox.png?token=GHSAT0AAAAAADXZGEN65OW5CNKD2LCK72J62NWFNAQ",
+    "ghost": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/ghost.png?token=GHSAT0AAAAAADXZGEN7PHNW3HH25NRU6W742NWFNEQ",
+    "gray": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/gray.png?token=GHSAT0AAAAAADXZGEN6WNHKJJ5ZERE6OGYE2NWFNJA",
+    "jess": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/jess.png?token=GHSAT0AAAAAADXZGEN7P6Y3AKQRCMSQMYQK2NWFNNQ",
+    "kina": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/kina.png?token=GHSAT0AAAAAADXZGEN762LVM7DJLNXIE74I2NWFNSA",
+    "lucy": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/lucy.png?token=GHSAT0AAAAAADXZGEN6TY4IG4NS6HYW6NKY2NWFNWA",
+    "maia": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/maia.png?token=GHSAT0AAAAAADXZGEN6YDPIURTMHHJLLTYI2NWFN3Q",
+    "mike": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/mike.png?token=GHSAT0AAAAAADXZGEN7SYDPXMVGGSFVSA6Y2NWFOAQ",
+    "moka": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/moka.png?token=GHSAT0AAAAAADXZGEN6NDSSIPAGFSEX43GA2NWFOEQ",
+    "silver": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/silver.png?token=GHSAT0AAAAAADXZGEN72IQPVQRS5EGO6S6I2NWFOIQ",
+    "silversky": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/silversky.png?token=GHSAT0AAAAAADXZGEN7BELUE6NN7OMXXBGQ2NWFORA",
+    "spirit": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/spirit.png?token=GHSAT0AAAAAADXZGEN64VFTO5YDMBP2IJAE2NWFOVQ",
+    "valentine": "https://raw.githubusercontent.com/internetyh/onekoCustom/refs/heads/master/onekoSkins/valentine.png?token=GHSAT0AAAAAADXZGEN6IA6FR7JGYTU6GEDG2NWFOZA",
 };
 
 export let frameCount = 0;
@@ -89,7 +104,6 @@ class Cat {
     div: HTMLDivElement;
     namediv: HTMLDivElement;
     name: string;
-    color: string;
     x = Math.floor(window.innerWidth * Math.random());
     y = Math.floor(window.innerHeight * Math.random());
     randomX = this.x;
@@ -99,10 +113,9 @@ class Cat {
     idleAnimationFrame = 0;
     speed = 10;
 
-    constructor(id = 100, name = String(id), color = colors[Math.floor(Math.random() * colors.length)]) {
+    constructor(id = 100, name = skins[id]) {
         this.id = id;
         this.name = name;
-        this.color = color;
 
         this.div = document.createElement("div");
         this.initGif();
@@ -119,7 +132,7 @@ class Cat {
 
     // set gif for oneko
     initGif() {
-        let gif = gifs[this.color];
+        let gif = skinGifs[skins[this.id]];
 
         const curScript = document.currentScript;
         if (curScript && curScript.dataset.cat) {
