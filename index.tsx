@@ -156,8 +156,8 @@ class Cat {
         this.div.style.left = `${this.x - 16}px`;
         this.div.style.top = `${this.y - 16}px`;
         this.div.style.zIndex = "2147483647";
-        this.div.draggable = true;
         this.div.addEventListener("mousedown", event => {
+            event.preventDefault();
             const onMove = event => this.drag(event);
             const onUp = event => {
                 document.removeEventListener("mousemove", onMove); this.drop(event);
